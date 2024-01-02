@@ -92,8 +92,64 @@ mode: single
 
 ## HACS Integration: next_holiday
 
-...
+GitHub: [partofthething/next-holiday-sensor](https://github.com/partofthething/next-holiday-sensor)
 
 ## Helpers
 
-...
+**binary_sensor.independence_day_holiday**
+
+```yaml
+{{ 
+   (states('sensor.next_holiday') == 'Independence Day' and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+}}
+```
+
+**binary_sensor.halloween_holiday**
+
+```yaml
+{{ 
+   (states('sensor.next_holiday') == 'Halloween' and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+}}
+```
+
+**binary_sensor.thanksgiving_holiday**
+
+```yaml
+{{ 
+   (states('sensor.next_holiday') == 'Thanksgiving' and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+}}
+```
+
+**binary_sensor.christmas_holiday**
+
+```yaml
+{{ 
+   (states('sensor.next_holiday') == 'Christmas Day' and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') < 35) or
+   
+   (states('sensor.next_holiday') == 'Christmas Day (Observed)') or
+   
+   (
+     states('sensor.next_holiday') == 'New Year\'s Day' and 
+     state_attr('sensor.next_holiday','days_until_next_holiday') > 1
+   ) or
+   
+   (states('sensor.next_holiday') == 'New Year\'s Day (Observed)') or
+   
+   (states('sensor.next_holiday') == 'Martin Luther King Jr. Day')
+}}
+```
+
+**binary_sensor.new_years_holiday**
+
+```yaml
+{{ 
+   (states('sensor.next_holiday') == 'New Year\'s Day' and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') <= 1) or
+   
+   (states('sensor.next_holiday') == 'New Year\'s Day (Observed)')
+}}
+```

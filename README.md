@@ -1,4 +1,4 @@
-# wled-presets
+# WLED Presets and Configuration
 
 [WLED](https://kno.wled.ge) presets I want to keep in source control
 
@@ -14,6 +14,10 @@ Copy a line from the json into a new preset in your WLED dashboard.
 In the new Preset window, uncheck "Use current state" and paste in the value. Skip the "0"/"1"/"2" prefix in the JSON file - that's the ID.
 
 ![New Preset](./.docs/new-preset.png)
+
+## Home Assistant
+
+I use Home Assistant automations to enable holiday-specific presets/playlists based on the day. Details are in the [Home Assistant Configuration](./home-assistant.md) doc.
 
 ## Todo?
 
