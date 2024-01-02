@@ -4,6 +4,9 @@
 
 As a personal convention, if a preset is prefixed with `///`, it has segment-specific settings I want to keep.
 
+* [Office wall](./office-wall.json)
+* [Roof line](./roof-line.json)
+
 ## Usage
 
 Copy a line from the json into a new preset in your WLED dashboard.
