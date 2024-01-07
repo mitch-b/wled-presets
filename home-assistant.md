@@ -1,8 +1,10 @@
 # Home Assistant Configuration
 
-I have an automation with my WLED controller to automate holiday-specific presets/playlists based on the day. 
+I have an automation with my WLED controller to automate holiday-specific presets/playlists based on the day.
 
 To facilitate this automation, I also have some Helpers and a HACS integration to keep things clean.
+
+I have some triggers repeated with small offsets, that's a hacky way to try the command twice if the first fails silently. 
 
 ```yaml
 alias: Holiday Roof Lights 🏠
@@ -94,62 +96,94 @@ mode: single
 
 GitHub: [partofthething/next-holiday-sensor](https://github.com/partofthething/next-holiday-sensor)
 
+As a part of 2024.01 Home Assistant, an official `holiday` integration was added. I was going to switch, but the benefit of this custom approach is that I can also add in Halloween, and family birthdays that I also would want to trigger holiday-specific automations.
+
 ## Helpers
 
-**binary_sensor.independence_day_holiday**
+### Independence Day
+
+`binary_sensor.independence_day_holiday`
 
 ```yaml
 {{ 
-   (states('sensor.next_holiday') == 'Independence Day' and 
-    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+   states('sensor.next_holiday') == 'Independence Day'
+   and 
+   state_attr('sensor.next_holiday','days_until_next_holiday') == 0
 }}
 ```
 
-**binary_sensor.halloween_holiday**
+### Halloween
+
+`binary_sensor.halloween_holiday`
 
 ```yaml
 {{ 
-   (states('sensor.next_holiday') == 'Halloween' and 
-    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+   states('sensor.next_holiday') == 'Halloween'
+   and 
+   state_attr('sensor.next_holiday','days_until_next_holiday') == 0
 }}
 ```
 
-**binary_sensor.thanksgiving_holiday**
+### Thanksgiving
+
+`binary_sensor.thanksgiving_holiday`
 
 ```yaml
 {{ 
-   (states('sensor.next_holiday') == 'Thanksgiving' and 
-    state_attr('sensor.next_holiday','days_until_next_holiday') == 0)
+   states('sensor.next_holiday') == 'Thanksgiving' 
+   and 
+   state_attr('sensor.next_holiday','days_until_next_holiday') == 0
 }}
 ```
 
-**binary_sensor.christmas_holiday**
+### Christmas Holiday 
+
+`binary_sensor.christmas_holiday`
 
 ```yaml
 {{ 
-   (states('sensor.next_holiday') == 'Christmas Day' and 
-    state_attr('sensor.next_holiday','days_until_next_holiday') < 35) or
+  (
+    states('sensor.next_holiday') == 'Christmas Day' 
+    and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') < 35
+  ) 
+  
+  or
+  
+  states('sensor.next_holiday') == 'Christmas Day (Observed)'
+  
+  or
+  
+  (
+    states('sensor.next_holiday') == 'New Year\'s Day'
+    and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') > 1
+  )
+  
+  or
    
-   (states('sensor.next_holiday') == 'Christmas Day (Observed)') or
+  states('sensor.next_holiday') == 'New Year\'s Day (Observed)')
+
+  or
    
-   (
-     states('sensor.next_holiday') == 'New Year\'s Day' and 
-     state_attr('sensor.next_holiday','days_until_next_holiday') > 1
-   ) or
-   
-   (states('sensor.next_holiday') == 'New Year\'s Day (Observed)') or
-   
-   (states('sensor.next_holiday') == 'Martin Luther King Jr. Day')
+  states('sensor.next_holiday') == 'Martin Luther King Jr. Day'
 }}
 ```
 
-**binary_sensor.new_years_holiday**
+### New Year's Holiday
+
+`binary_sensor.new_years_holiday`
 
 ```yaml
 {{ 
-   (states('sensor.next_holiday') == 'New Year\'s Day' and 
-    state_attr('sensor.next_holiday','days_until_next_holiday') <= 1) or
-   
-   (states('sensor.next_holiday') == 'New Year\'s Day (Observed)')
+  (
+    states('sensor.next_holiday') == 'New Year\'s Day'
+    and 
+    state_attr('sensor.next_holiday','days_until_next_holiday') <= 1
+  )
+  
+  or
+
+  states('sensor.next_holiday') == 'New Year\'s Day (Observed)'
 }}
 ```
