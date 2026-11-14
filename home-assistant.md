@@ -2,9 +2,11 @@
 
 I have an automation with my WLED controller to automate holiday-specific presets/playlists based on the day.
 
-To facilitate this automation, I also have some Helpers and a HACS integration to keep things clean.
+This is an example of one setup, not a drop-in configuration. The device IDs, entity IDs, and select options in the automation are specific to my Home Assistant and WLED setup. Replace them with the IDs and options from your own instance, and make sure the helper entity IDs match the ones referenced by your automation.
 
-I have some triggers repeated with small offsets, that's a hacky way to try the command twice if the first fails silently. 
+The automation runs at sunset and retries 10 seconds later, as well as at 1:00 AM, 5:00 AM, and five minutes after sunrise. The 1:00 AM and sunrise triggers turn the lights off. For other triggers, the `choose` action runs only the first matching branch, so branch order matters. The July 4th, Halloween, and Thanksgiving branches currently have empty sequences and do not select a preset. The default action stops the automation when none of the holiday helpers is on.
+
+The WLED select options (for example, `Christmas`) must already be available on the selected entity in your setup.
 
 ```yaml
 alias: Holiday Roof Lights 🏠
@@ -92,13 +94,17 @@ action:
 mode: single
 ```
 
-## HACS Integration: next_holiday
+## HACS custom integration: Next Holiday Sensor
 
-GitHub: [partofthething/next-holiday-sensor](https://github.com/partofthething/next-holiday-sensor)
+Project: [partofthething/next-holiday-sensor](https://github.com/partofthething/next-holiday-sensor)
 
-As a part of 2024.01 Home Assistant, an official `holiday` integration was added. I was going to switch, but the benefit of this custom approach is that I can also add in Halloween, and family birthdays that I also would want to trigger holiday-specific automations.
+The custom integration provides `sensor.next_holiday`: its state is the next holiday's name (or that day's holiday when today is a holiday), and its `days_until_next_holiday` attribute is used by the templates below. Follow the project's README for HACS installation and sensor configuration; it documents configuring a country/region source and adding recurring dates with `custom_holidays` (such as Halloween or family birthdays). This guide assumes the sensor is already installed, configured, and has the entity ID and attribute shown above.
+
+Home Assistant's built-in [Holiday integration](https://www.home-assistant.io/integrations/holiday/) provides a calendar of public holidays for a country and optional region. It is an alternative for public-holiday calendars, but it does not expose the `sensor.next_holiday` state and `days_until_next_holiday` attribute these templates expect, so switching to it requires adapting the helpers.
 
 ## Helpers
+
+Create these as Template binary sensor helpers in **Settings > Devices & services > Helpers > Create helper > Template**. Use the template for each helper as its state template, and make sure its resulting entity ID matches the one listed here. The names returned by `sensor.next_holiday` must also match the strings in the templates (including punctuation and localization).
 
 ### Independence Day
 
@@ -140,6 +146,8 @@ As a part of 2024.01 Home Assistant, an official `holiday` integration was added
 
 `binary_sensor.christmas_holiday`
 
+This helper selects the Christmas theme during the month before Christmas, on Christmas Day (including an observed date), and through the New Year's/early-January holiday period shown below. The `New Year's Day (Observed)` case also turns on the New Year's helper; because the Christmas branch comes first in the automation, Christmas takes precedence on that date.
+
 ```yaml
 {{ 
   (
@@ -162,7 +170,7 @@ As a part of 2024.01 Home Assistant, an official `holiday` integration was added
   
   or
    
-  states('sensor.next_holiday') == 'New Year\'s Day (Observed)')
+  states('sensor.next_holiday') == 'New Year\'s Day (Observed)'
 
   or
    
