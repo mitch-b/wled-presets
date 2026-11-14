@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Repository WLED preset backups",
+  "description": "Stored preset subset based on the WLED JSON API and WLED v16.0.1. Not an official WLED schema or a complete JSON API schema.",
+  "type": "object",
+  "minProperties": 1,
+  "properties": {
+    "0": { "type": "object", "maxProperties": 0 }
+  },
+  "patternProperties": {
+    "^([1-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|250)$": {
+      "$ref": "#/$defs/preset"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "byte": { "type": "integer", "minimum": 0, "maximum": 255 },
+    "uint16": { "type": "integer", "minimum": 0, "maximum": 65535 },
+    "presetId": { "type": "integer", "minimum": 1, "maximum": 250 },
+    "toggle": { "enum": [true, false, "t"] },
+    "duration": { "type": "integer", "minimum": 0, "maximum": 42949670 },
+    "color": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/byte" }
+        },
+        { "type": "string", "pattern": "^([0-9a-fA-F]{6}|[0-9a-fA-F]{8}|r)$" }
+      ]
+    },
+    "preset": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "n": { "type": "string" },
+        "ql": { "type": "string" },
+        "on": { "$ref": "#/$defs/toggle" },
+        "bri": { "$ref": "#/$defs/byte" },
+        "transition": { "$ref": "#/$defs/uint16" },
+        "mainseg": { "$ref": "#/$defs/byte" },
+        "bs": { "$ref": "#/$defs/byte" },
+        "seg": {
+          "oneOf": [
+            { "$ref": "#/$defs/segment" },
+            { "type": "array", "items": { "$ref": "#/$defs/segment" } }
+          ]
+        },
+        "playlist": { "$ref": "#/$defs/playlist" }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/byte" },
+        "n": { "type": "string" },
+        "start": { "$ref": "#/$defs/uint16" },
+        "stop": { "$ref": "#/$defs/uint16" },
+        "startY": { "$ref": "#/$defs/uint16" },
+        "stopY": { "$ref": "#/$defs/uint16" },
+        "len": { "$ref": "#/$defs/uint16" },
+        "grp": { "$ref": "#/$defs/byte" },
+        "spc": { "$ref": "#/$defs/byte" },
+        "of": { "type": "integer", "minimum": -65535, "maximum": 65535 },
+        "on": { "$ref": "#/$defs/toggle" },
+        "frz": { "type": "boolean" },
+        "bri": { "$ref": "#/$defs/byte" },
+        "cct": {
+          "oneOf": [
+            { "$ref": "#/$defs/byte" },
+            { "type": "integer", "minimum": 1900, "maximum": 10091 }
+          ]
+        },
+        "set": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "lc": { "$ref": "#/$defs/byte" },
+        "col": {
+          "type": "array",
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/color" }
+        },
+        "fx": { "$ref": "#/$defs/byte" },
+        "sx": { "$ref": "#/$defs/byte" },
+        "ix": { "$ref": "#/$defs/byte" },
+        "pal": { "$ref": "#/$defs/byte" },
+        "c1": { "$ref": "#/$defs/byte" },
+        "c2": { "$ref": "#/$defs/byte" },
+        "c3": { "type": "integer", "minimum": 0, "maximum": 31 },
+        "sel": { "type": "boolean" },
+        "rev": { "type": "boolean" },
+        "mi": { "type": "boolean" },
+        "rY": { "type": "boolean" },
+        "mY": { "type": "boolean" },
+        "tp": { "type": "boolean" },
+        "o1": { "type": "boolean" },
+        "o2": { "type": "boolean" },
+        "o3": { "type": "boolean" },
+        "si": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "m12": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "bm": { "type": "integer", "minimum": 0, "maximum": 16 }
+      }
+    },
+    "playlist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ps"],
+      "properties": {
+        "ps": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/presetId" }
+        },
+        "dur": {
+          "oneOf": [
+            { "$ref": "#/$defs/duration" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "items": { "$ref": "#/$defs/duration" }
+            }
+          ]
+        },
+        "transition": {
+          "oneOf": [
+            { "$ref": "#/$defs/uint16" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "items": { "$ref": "#/$defs/uint16" }
+            }
+          ]
+        },
+        "repeat": { "type": "integer", "minimum": -1, "maximum": 254 },
+        "end": {
+          "anyOf": [
+            { "type": "integer", "minimum": 0, "maximum": 250 },
+            { "const": 255 }
+          ]
+        },
+        "r": { "enum": [0, 1, true, false] }
+      }
+    }
+  }
+}
