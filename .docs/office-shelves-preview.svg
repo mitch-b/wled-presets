@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 500" role="img" aria-labelledby="title description">
+  <title id="title">Office shelves preset reel</title>
+  <desc id="description">Three staggered LED strips on a shelf frame, matching the supplied sketch. Top-to-bottom strip order and left-to-right direction are illustrative.</desc>
+  <style>
+      text { font-family: system-ui, sans-serif; fill: #a5b4ca; font-size: 13px; }
+      .heading { fill: #edf4ff; font-size: 26px; font-weight: 650; }
+      .caption { fill: #70849f; font-size: 12px; }
+      .motion { display: inline; }
+      @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+    
+      .glow { filter: url(#glow); fill: none; stroke-linecap: round; stroke-width: 3.4; }
+      .preset { fill: #edf4ff; font-size: 17px; font-weight: 600; }
+      .slot { opacity: 0; animation: slot linear infinite; }
+      .slot.first { opacity: 1; }
+      .run { animation-timing-function: linear; animation-iteration-count: infinite; }
+      .tw { animation: tw ease-in-out infinite; }
+      .breathe { animation: breathe ease-in-out infinite; }
+      .flicker { animation: flicker ease-in-out infinite alternate; }
+      @keyframes tw { 0%, 100% { opacity: .05 } 50% { opacity: 1 } }
+      @keyframes breathe { 0%, 100% { opacity: .3 } 50% { opacity: 1 } }
+      @keyframes flicker { 0% { opacity: .9 } 30% { opacity: .6 } 55% { opacity: .95 } 80% { opacity: .7 } 100% { opacity: .85 } }
+      @keyframes slot { 0% { opacity: 0 } 2.500% { opacity: 1 } 14.167% { opacity: 1 } 16.667% { opacity: 0 } 100% { opacity: 0 } }
+      .d0 { stroke-dasharray: 0 1 0 1 0 1 0 13 }
+.d1 { stroke-dasharray: 0 1 }
+.d2 { stroke-dasharray: 0 14 0 7 0 8 0 13 0 10 0 15 0 4 0 9 0 14 0 7 }
+.d3 { stroke-dasharray: 0 9 0 6 0 15 0 8 0 13 0 10 0 7 0 8 0 13 0 10 }
+.d4 { stroke-dasharray: 0 8 0 9 0 10 0 15 0 4 0 5 0 10 0 11 0 4 0 13 }
+.d5 { stroke-dasharray: 0 15 0 8 0 9 0 10 0 7 0 12 0 5 0 10 0 15 0 4 }
+.d6 { stroke-dasharray: 0 10 0 11 0 4 0 5 0 6 0 11 0 8 0 9 0 6 0 7 }
+.d7 { stroke-dasharray: 0 9 0 10 0 15 0 12 0 9 0 6 0 11 0 8 0 5 0 10 }
+.d8 { stroke-dasharray: 0 4 0 5 0 6 0 15 0 4 0 5 0 10 0 15 0 4 0 9 }
+.d9 { stroke-dasharray: 0 11 0 8 0 13 0 10 0 15 0 4 0 13 0 14 0 7 0 12 }
+.d10 { stroke-dasharray: 0 10 0 7 0 12 0 5 0 6 0 11 0 4 0 13 0 6 0 15 }
+.d11 { stroke-dasharray: 0 5 0 10 0 7 0 12 0 9 0 6 0 11 0 12 0 9 0 6 }
+.d12 { stroke-dasharray: 0 12 0 9 0 14 0 7 0 12 0 13 0 14 0 11 0 8 0 9 }
+.d13 { stroke-dasharray: 0 11 0 12 0 13 0 14 0 11 0 12 0 5 0 14 0 11 0 12 }
+.d14 { stroke-dasharray: 0 6 0 7 0 4 0 9 0 6 0 11 0 4 0 9 0 10 0 11 }
+.d15 { stroke-dasharray: 0 5 0 10 0 11 0 4 0 9 0 6 0 7 0 8 0 9 0 14 }
+.d16 { stroke-dasharray: 0 12 0 9 0 10 0 11 0 8 0 5 0 10 0 7 0 12 0 5 }
+.d17 { stroke-dasharray: 0 7 0 12 0 5 0 6 0 11 0 12 0 5 0 6 0 11 0 8 }
+.d18 { stroke-dasharray: 0 14 0 11 0 12 0 13 0 14 0 7 0 8 0 5 0 14 0 11 }
+.d19 { stroke-dasharray: 0 13 0 14 0 11 0 8 0 5 0 14 0 11 0 4 0 13 0 14 }
+.d20 { stroke-dasharray: 0 1 0 1 0 1 0 1 0 1 0 19 }
+.d21 { stroke-dasharray: 0 1 0 1 0 1 0 1 0 1 0 31 }
+@keyframes run16 { to { stroke-dashoffset: -16px } } .run16 { animation-name: run16 }
+@keyframes run24 { to { stroke-dashoffset: -24px } } .run24 { animation-name: run24 }
+@keyframes run36 { to { stroke-dashoffset: -36px } } .run36 { animation-name: run36 }
+      @media (prefers-reduced-motion: reduce) {
+        .slot, .run, .tw, .breathe, .flicker { animation: none; }
+        .slot.first { opacity: 1; }
+      }
+    </style>
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop offset="0" stop-color="#101c30" />
+      <stop offset="1" stop-color="#070d18" />
+    </linearGradient>
+    <filter id="glow" x="-5%" y="-50%" width="110%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <path id="piece-0" d="M 170.000,187.500 L 642.000,187.500" pathLength="59" data-start="0" data-stop="59" data-output="0" data-output-index="0" data-group="seg-0" />
+    <path id="piece-1" d="M 330.000,267.500 L 802.000,267.500" pathLength="59" data-start="59" data-stop="118" data-output="1" data-output-index="0" data-group="seg-1" />
+    <path id="piece-2" d="M 170.000,347.500 L 642.000,347.500" pathLength="59" data-start="118" data-stop="177" data-output="2" data-output-index="0" data-group="seg-2" />
+    <g id="all">
+      <use href="#seg-0" />
+      <use href="#seg-1" />
+      <use href="#seg-2" />
+    </g>
+    <g id="seg-0">
+      <use href="#piece-0" />
+    </g>
+    <g id="seg-1">
+      <use href="#piece-1" />
+    </g>
+    <g id="seg-2">
+      <use href="#piece-2" />
+    </g>
+  </defs>
+  <rect width="1100" height="500" rx="20" fill="url(#sky)" />
+  <text x="40" y="48" class="heading">Office shelves preset reel</text>
+  <text x="40" y="76">177 LEDs / three equal 59-LED strips / every saved effect preset in office-shelves.json</text>
+  <text x="40" y="474" class="caption">Illustrative motion and colors, not a WLED emulator. Reduced motion supported.</text>
+  <path d="M 225,140 V 402" stroke="#344a62" stroke-width="4" />
+  <path d="M 550,140 V 402" stroke="#344a62" stroke-width="4" />
+  <path d="M 875,140 V 402" stroke="#344a62" stroke-width="4" />
+  <path d="M 110,196 H 990" stroke="#41556d" stroke-width="3" />
+  <rect x="165" y="181" width="482" height="13" rx="3" fill="#25394e" stroke="#4b6178" />
+  <text x="970" y="174" text-anchor="end">59 LEDs</text>
+  <path d="M 110,276 H 990" stroke="#41556d" stroke-width="3" />
+  <rect x="325" y="261" width="482" height="13" rx="3" fill="#25394e" stroke="#4b6178" />
+  <text x="970" y="254" text-anchor="end">59 LEDs</text>
+  <path d="M 110,356 H 990" stroke="#41556d" stroke-width="3" />
+  <rect x="165" y="341" width="482" height="13" rx="3" fill="#25394e" stroke="#4b6178" />
+  <text x="970" y="334" text-anchor="end">59 LEDs</text>
+  <g id="preset-reel" class="glow" data-presets="6">
+    <g id="preset-1" data-preset="1" style="animation-duration:24s;animation-delay:-0s" class="slot first">
+      <g data-fx="27" data-leds="0-59 59-118 118-177" opacity="1.00">
+        <use href="#all" stroke="#003070" class="d0 run run16" style="animation-duration:15.2s;animation-delay:-0.00s" />
+        <use href="#all" stroke="#0060ff" class="d0 run run16" style="animation-duration:15.2s;animation-delay:-3.80s" />
+        <use href="#all" stroke="#00c8ff" class="d0 run run16" style="animation-duration:15.2s;animation-delay:-7.60s" />
+        <use href="#all" stroke="#e0f8ff" class="d0 run run16" style="animation-duration:15.2s;animation-delay:-11.40s" />
+      </g>
+    </g>
+    <g id="preset-2" data-preset="2" style="animation-duration:24s;animation-delay:-20s" class="slot">
+      <g data-fx="74" data-leds="0-59" opacity="1.00">
+        <use href="#seg-0" stroke="#002848" opacity="0.12" class="d1" />
+        <use href="#seg-0" stroke="#002848" class="d2 tw" style="animation-duration:7.12s;animation-delay:-0.00s" />
+        <use href="#seg-0" stroke="#0060ff" class="d3 tw" style="animation-duration:8.27s;animation-delay:-1.38s" />
+        <use href="#seg-0" stroke="#00b080" class="d4 tw" style="animation-duration:9.43s;animation-delay:-3.14s" />
+        <use href="#seg-0" stroke="#20ff90" class="d5 tw" style="animation-duration:10.58s;animation-delay:-5.29s" />
+        <use href="#seg-0" stroke="#002848" class="d6 tw" style="animation-duration:11.74s;animation-delay:-7.83s" />
+        <use href="#seg-0" stroke="#0060ff" class="d7 tw" style="animation-duration:12.90s;animation-delay:-10.75s" />
+      </g>
+      <g data-fx="74" data-leds="59-118" opacity="1.00">
+        <use href="#seg-1" stroke="#002848" opacity="0.12" class="d1" />
+        <use href="#seg-1" stroke="#002848" class="d8 tw" style="animation-duration:7.12s;animation-delay:-0.00s" />
+        <use href="#seg-1" stroke="#0060ff" class="d9 tw" style="animation-duration:8.27s;animation-delay:-1.38s" />
+        <use href="#seg-1" stroke="#00b080" class="d10 tw" style="animation-duration:9.43s;animation-delay:-3.14s" />
+        <use href="#seg-1" stroke="#20ff90" class="d11 tw" style="animation-duration:10.58s;animation-delay:-5.29s" />
+        <use href="#seg-1" stroke="#002848" class="d12 tw" style="animation-duration:11.74s;animation-delay:-7.83s" />
+        <use href="#seg-1" stroke="#0060ff" class="d13 tw" style="animation-duration:12.90s;animation-delay:-10.75s" />
+      </g>
+      <g data-fx="74" data-leds="118-177" opacity="1.00">
+        <use href="#seg-2" stroke="#002848" opacity="0.12" class="d1" />
+        <use href="#seg-2" stroke="#002848" class="d14 tw" style="animation-duration:7.12s;animation-delay:-0.00s" />
+        <use href="#seg-2" stroke="#0060ff" class="d15 tw" style="animation-duration:8.27s;animation-delay:-1.38s" />
+        <use href="#seg-2" stroke="#00b080" class="d16 tw" style="animation-duration:9.43s;animation-delay:-3.14s" />
+        <use href="#seg-2" stroke="#20ff90" class="d17 tw" style="animation-duration:10.58s;animation-delay:-5.29s" />
+        <use href="#seg-2" stroke="#002848" class="d18 tw" style="animation-duration:11.74s;animation-delay:-7.83s" />
+        <use href="#seg-2" stroke="#0060ff" class="d19 tw" style="animation-duration:12.90s;animation-delay:-10.75s" />
+      </g>
+    </g>
+    <g id="preset-3" data-preset="3" style="animation-duration:24s;animation-delay:-16s" class="slot">
+      <g data-fx="112" data-leds="0-59 59-118 118-177" opacity="1.00">
+        <use href="#all" stroke="#8b0000" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-0.00s" />
+        <use href="#all" stroke="#ff2a00" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-9.53s" />
+        <use href="#all" stroke="#ff8c00" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-19.05s" />
+        <use href="#all" stroke="#ffd040" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-28.58s" />
+      </g>
+    </g>
+    <g id="preset-4" data-preset="4" style="animation-duration:24s;animation-delay:-12s" class="slot">
+      <g data-fx="67" data-leds="0-177" opacity="1.00">
+        <use href="#all" stroke="#ff0000" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-0.00s" />
+        <use href="#all" stroke="#ffa500" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-6.35s" />
+        <use href="#all" stroke="#ffff00" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-12.70s" />
+        <use href="#all" stroke="#00ff00" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-19.05s" />
+        <use href="#all" stroke="#0080ff" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-25.40s" />
+        <use href="#all" stroke="#8000ff" class="d21 run run36" style="animation-duration:38.1s;animation-delay:-31.75s" />
+      </g>
+    </g>
+    <g id="preset-5" data-preset="5" style="animation-duration:24s;animation-delay:-8s" class="slot">
+      <g data-fx="114" data-leds="0-177" opacity="1.00">
+        <use href="#all" stroke="#003070" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-0.00s" />
+        <use href="#all" stroke="#0060ff" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-9.53s" />
+        <use href="#all" stroke="#00c8ff" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-19.05s" />
+        <use href="#all" stroke="#e0f8ff" class="d20 run run24" style="animation-duration:38.1s;animation-delay:-28.58s" />
+      </g>
+    </g>
+    <g id="preset-6" data-preset="6" style="animation-duration:24s;animation-delay:-4s" class="slot">
+      <g data-fx="81" data-leds="0-177" opacity="1.00">
+        <use href="#all" stroke="#ff0000" opacity="0.12" class="d1" />
+        <use href="#all" stroke="#ff0000" class="d2 tw" style="animation-duration:8.17s;animation-delay:-0.00s" />
+        <use href="#all" stroke="#ff6600" class="d3 tw" style="animation-duration:9.50s;animation-delay:-1.58s" />
+        <use href="#all" stroke="#ff0000" class="d4 tw" style="animation-duration:10.82s;animation-delay:-3.61s" />
+        <use href="#all" stroke="#ff6600" class="d5 tw" style="animation-duration:12.15s;animation-delay:-6.08s" />
+        <use href="#all" stroke="#ff0000" class="d6 tw" style="animation-duration:13.48s;animation-delay:-8.99s" />
+        <use href="#all" stroke="#ff6600" class="d7 tw" style="animation-duration:14.81s;animation-delay:-12.34s" />
+      </g>
+    </g>
+  </g>
+  <g id="preset-labels">
+    <g style="animation-duration:24s;animation-delay:-0s" class="slot first">
+      <text x="40" y="112" class="preset">Preset 1 · Blue Chase</text>
+      <text x="40" y="132" class="caption">Android</text>
+    </g>
+    <g style="animation-duration:24s;animation-delay:-20s" class="slot">
+      <text x="40" y="112" class="preset">Preset 2 · Colortwinkles</text>
+      <text x="40" y="132" class="caption">Colortwinkles</text>
+    </g>
+    <g style="animation-duration:24s;animation-delay:-16s" class="slot">
+      <text x="40" y="112" class="preset">Preset 3 · Fire Shadows</text>
+      <text x="40" y="132" class="caption">Dancing Shadows</text>
+    </g>
+    <g style="animation-duration:24s;animation-delay:-12s" class="slot">
+      <text x="40" y="112" class="preset">Preset 4 · 🌈 Waves</text>
+      <text x="40" y="132" class="caption">Colorwaves</text>
+    </g>
+    <g style="animation-duration:24s;animation-delay:-8s" class="slot">
+      <text x="40" y="112" class="preset">Preset 5 · Candy Cane 🎅</text>
+      <text x="40" y="132" class="caption">Rotozoomer</text>
+    </g>
+    <g style="animation-duration:24s;animation-delay:-4s" class="slot">
+      <text x="40" y="112" class="preset">Preset 6 · Halloween Twinkle 🎃</text>
+      <text x="40" y="132" class="caption">Twinklecat</text>
+    </g>
+  </g>
+  <text x="40" y="435" class="caption">Equal strip lengths, staggered placement. Thin lines are shelves and supports, not LEDs.</text>
+</svg>

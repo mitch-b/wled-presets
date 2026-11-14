@@ -7,6 +7,55 @@ As a personal convention, if a preset is prefixed with `///`, it has segment-spe
 * [Office shelves](./office-shelves.json)
 * [Roof line](./roof-line.json)
 
+## Animated previews
+
+An anonymized geometric house silhouette, plus a shelf drawing based on the
+installation sketch. Each image is a **preset reel**: it cycles through every
+saved effect preset in its JSON file (playlists skipped), showing the preset
+name for about four seconds each. These are **not WLED effect simulations**:
+effects are mapped to approximate CSS motion (chase, wave, twinkle, breathe,
+comet, sparkle), and palettes, timing, brightness, and layer blending are
+illustrative.
+
+![Roofline cycling through the saved roof presets](./.docs/roofline-preview.svg)
+
+![Three staggered office shelf strips cycling through the saved office presets](./.docs/office-shelves-preview.svg)
+
+Controller reads confirmed **621 roof LEDs** and **177 shelf LEDs**. The roof
+controller's saved **Base** preset (14) defines nine logical preset segments with
+7 / 74 / 113 / 73 / 96 / 33 / 128 / 70 / 27 LEDs. Their drawn roof paths are
+proportional to those counts. The hardware configuration has **two outputs,
+split near the left garage corner: 257 reversed, then 364 forward**. The office
+hardware configuration confirms **three separate 59-LED outputs**, shown staggered
+as in the sketch. Active effects may combine or layer these physical sections;
+active segment count is not the physical strip count.
+
+The house keeps only a broad, low silhouette, asymmetric stepped roof tiers,
+an approximate entry recess, and three plain garage bays. Windows, door details,
+surface textures, and landscaping are intentionally omitted; no photo is embedded.
+LEDs follow the fascia and side returns; gaps between overlapping eaves are
+not illuminated, and the lower eave behind the entry volume is visually
+occluded while keeping its LED range.
+The two data arrows point
+away from the left garage corner: indexes **0–256 reversed** toward the right,
+and **257–620 forward** toward the left. The boundary lies **63 LEDs into logical
+segment 3**, not at a preset segment boundary.
+
+The house perspective is illustrative: the reference photo was taken at an
+angle, not straight on. Architectural placement, roof angles, and shelf
+top-to-bottom order/direction are approximate, not measured or reported by the
+controllers.
+They support reduced-motion preferences and fall back to the first preset when
+SVG animation is unavailable.
+
+To adjust the illustrative geometry or regenerate the images after changing these
+presets, edit/run `python scripts/render_previews.py`. Strips are drawn as
+dotted paths (one dot per LED via `pathLength`) rather than per-LED elements,
+which keeps the files small. Each `piece-N` path exposes `data-start` /
+`data-stop` (exclusive) plus zero-based `data-output` / `data-output-index`
+attributes for its first LED, accounting for the reversed roof output. Update the output constants in the renderer if controller
+wiring changes. Generation is offline and never changes the controllers.
+
 ## Preset style
 
 Default to calm, visually appealing effects: slow movement, soft twinkles, and gradual changes. Avoid strobes, rapid flashes, and harsh flicker unless explicitly requested.
