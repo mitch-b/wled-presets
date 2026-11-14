@@ -15,6 +15,10 @@ In the new Preset window, uncheck "Use current state" and paste in the value. Sk
 
 ![New Preset](./.docs/new-preset.png)
 
+## Layered presets (WLED 16+)
+
+Some roof presets (e.g. `Christmas • … v2`, `111`–`117`) use WLED 16 segment layering: full-length segments stacked on top of each other, with a per-segment blend mode (`bm`) and opacity (`bri`). Later segments render on top. These require WLED 16 or newer.
+
 ## Home Assistant
 
 I use Home Assistant automations to enable holiday-specific presets/playlists based on the day. Details are in the [Home Assistant Configuration](./home-assistant.md) doc.
